@@ -1,6 +1,7 @@
 package lecture14;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import jdk.jshell.execution.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,9 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 public class ExerciseTests {
@@ -162,11 +166,12 @@ public class ExerciseTests {
         wait.until(ExpectedConditions.visibilityOf(signUpLabel));
 
         WebElement usernameElement = driver.findElement(By.name("username"));
-        usernameElement.sendKeys("Ivan Ivanov");
+        usernameElement.sendKeys("testttttTesttt");
 
-        String email = generateEmail();
+//        String email = generateEmail();
         WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
-        emailElement.sendKeys(email);
+        emailElement.sendKeys("testtj1211@gmail.com");
+        //emailElement.sendKeys(email);
 
         WebElement dateElement = driver.findElement(By.xpath("//input[@formcontrolname='birthDate']"));
         dateElement.sendKeys("10022000");
@@ -181,11 +186,56 @@ public class ExerciseTests {
         publicInfoField.sendKeys("Test");
 
         WebElement signInButton = driver.findElement(By.xpath("//button[@id='sign-in-button']"));
-        signInButton.clic();
+        signInButton.click();
+
+        WebElement profileLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-link-profile")));
+        profileLink.click();
+
+        wait.until(ExpectedConditions.urlContains("http://training.skillo-bg.com:4300/users/"));
+
+        WebElement userNameLabelInProfile = driver.findElement(By.tagName("h2"));
+        Assert.assertTrue(userNameLabelInProfile.isDisplayed());
 
     }
 
-    public static String generateEmail() {
-        return UUID.randomUUID().toString() + "@example.com";
-    }
+//    public String randomIdentifier() {
+//        Random rand = new Random();
+//        Set<String> words = new HashSet<String>();
+//        while(((HashSet<?>) words).size() < 10000)
+//            words.add(Long.toString(Math.abs(rand.nextLong() % 3656158440062976L), 36));
+//        return randomIdentifier();
+//        }
+
+
+//    public static String generateRandomName(){
+//        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//        String randomString="";
+//        int length = 5;
+//
+//        Random rand = new Random();
+//
+//        char[] text = new char[length];
+//
+//        for(int i=0; i< length; i++){
+//            text[i]=characters.charAt(rand.nextInt();
+//        }
+//    }
+
+
+//    public String getSaltString() {
+//        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+//        StringBuilder salt = new StringBuilder();
+//        Random rnd = new Random();
+//        while (salt.length() < 18) { // length of the random string.
+//            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+//            salt.append(SALTCHARS.charAt(index));
+//        }
+//        String saltStr = salt.toString();
+//        return saltStr;
+//
+//    }
+
+//    public static String generateEmail() {
+//        return UUID.randomUUID().toString() + "@gmail.com";
+//    }
 }
