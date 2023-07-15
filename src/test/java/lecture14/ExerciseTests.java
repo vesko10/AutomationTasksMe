@@ -181,7 +181,7 @@ public class ExerciseTests {
         publicInfoField.sendKeys("Test");
 
         WebElement signInButton = driver.findElement(By.xpath("//button[@id='sign-in-button']"));
-        signInButton.click();
+        signInButton.clic();
 
     }
 
