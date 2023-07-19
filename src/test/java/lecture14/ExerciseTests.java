@@ -2,6 +2,7 @@ package lecture14;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jshell.execution.Util;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -146,7 +147,7 @@ public class ExerciseTests {
     }
 
     @Test
-    public void testRegistration(){
+    public void testRegistration() {
         driver.get("http://training.skillo-bg.com:4300/posts/all");
         WebElement loginLink = driver.findElement(By.id("nav-link-login"));
         loginLink.click();
@@ -165,13 +166,13 @@ public class ExerciseTests {
         WebElement signUpLabel = driver.findElement(By.xpath("//*[text()='Sign up']"));
         wait.until(ExpectedConditions.visibilityOf(signUpLabel));
 
-        WebElement usernameElement = driver.findElement(By.name("username"));
-        usernameElement.sendKeys("testttttTesttt");
+        WebElement userNameField = driver.findElement(By.name("username"));
+        String username = generateRandomAlphabeticString(5, 8);
+        userNameField.sendKeys(username);
 
-//        String email = generateEmail();
-        WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
-        emailElement.sendKeys("testtj1211@gmail.com");
-        //emailElement.sendKeys(email);
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        String email = generateRandomEmail(5, 10);
+        emailField.sendKeys(email);
 
         WebElement dateElement = driver.findElement(By.xpath("//input[@formcontrolname='birthDate']"));
         dateElement.sendKeys("10022000");
@@ -196,6 +197,14 @@ public class ExerciseTests {
         WebElement userNameLabelInProfile = driver.findElement(By.tagName("h2"));
         Assert.assertTrue(userNameLabelInProfile.isDisplayed());
 
+    }
+
+    private String generateRandomEmail(int minLengthInclusive, int maxLengthInclusive) {
+        return generateRandomAlphabeticString(minLengthInclusive, maxLengthInclusive) + "@gmail.com";
+    }
+
+    private String generateRandomAlphabeticString(int minLengthInclusive, int maxLengthInclusive) {
+        return RandomStringUtils.randomAlphanumeric(minLengthInclusive, maxLengthInclusive);
     }
 
 //    public String randomIdentifier() {
@@ -235,7 +244,56 @@ public class ExerciseTests {
 //
 //    }
 
-//    public static String generateEmail() {
+    //    public static String generateEmail() {
 //        return UUID.randomUUID().toString() + "@gmail.com";
 //    }
+    @Test
+    public void testEditProfile() {
+        driver.get("http://training.skillo-bg.com:4300/posts/all");
+        WebElement loginLink = driver.findElement(By.id("nav-link-login"));
+        loginLink.click();
+
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4300/users/login"));
+
+
+        WebElement signInElement = driver.findElement(By.xpath("//*[text()='Sign in']"));
+        wait.until(ExpectedConditions.visibilityOf(signInElement));
+
+        WebElement userNameField = driver.findElement(By.id("defaultLoginFormUsername"));
+        userNameField.sendKeys("testMail1@gmail.com");
+
+        WebElement passwordField = driver.findElement(By.id("defaultLoginFormPassword"));
+        passwordField.sendKeys("Dimitar1.Tarkalanov1");
+
+        WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("sign-in-button")));
+        signInButton.click();
+
+        WebElement profileLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-link-profile")));
+        profileLink.click();
+
+        wait.until(ExpectedConditions.urlContains("http://training.skillo-bg.com:4300/users/"));
+
+        WebElement editProfileButton = driver.findElement(By.xpath("//i[@class='fas fa-user-edit ng-star-inserted'][last()]"));
+        editProfileButton.click();
+
+        WebElement modal = driver.findElement(By.cssSelector("modal-dialog"));
+
+//        modal.findElement()
+        Boolean isModifyTextLabelDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h2"),"Modify Your Profile"));
+        Assert.assertTrue(isModifyTextLabelDisplayed, "The username is not displayed!");
+
+        WebElement modifyUserName = driver.findElement(By.xpath("//input[@formcontrolname='username']"));
+        modifyUserName.clear();
+        modifyUserName.sendKeys("DimitarTarkalanov");
+
+        WebElement saveButton = driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
+        saveButton.click();
+
+        WebElement userNameLabelInProfile = driver.findElement(By.tagName("h2"));
+        Assert.assertTrue(userNameLabelInProfile.isDisplayed());
+
+
+    }
 }
