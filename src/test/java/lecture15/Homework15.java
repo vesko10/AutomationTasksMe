@@ -1,10 +1,7 @@
 package lecture15;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -214,7 +211,6 @@ public class Homework15 {
         wait.until(ExpectedConditions.visibilityOf(availableExamples));
     }
 
-
     @Test
     public void testAboutDisappearingElement() {
         driver.get("https://the-internet.herokuapp.com/");
@@ -315,8 +311,9 @@ public class Homework15 {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dropdown"));
 
-        WebElement DropDownTitle = driver.findElement(By.tagName("h3"));
-        wait.until(ExpectedConditions.visibilityOf(DropDownTitle));
+        WebElement dropDownTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dropDownTitle));
+
 
         Select drpSelectAnOption = new Select(driver.findElement(By.id("dropdown")));
         drpSelectAnOption.selectByVisibleText("Option 1");
@@ -325,5 +322,229 @@ public class Homework15 {
         drpSelectAnOption.selectByIndex(2);
 
         wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dropdown"));
-  }
+    }
+
+    @Test
+    public void testDynamicContent() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement dynamicContentLink = driver.findElement(By.xpath("//*[contains(text(),'Dynamic Content')]"));
+        dynamicContentLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_content"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        String actualText1 = driver.findElement(By.xpath("(//div[@class='example']/p)[1]")).getText();
+        String expectedText1 = "This example demonstrates the ever-evolving nature of content by loading new text and images on each page refresh.";
+        Assert.assertEquals(actualText1, expectedText1);
+
+        String actualText2 = driver.findElement(By.xpath("(//div[@class='example']/p)[2]")).getText();
+        String expectedText2 = "To make some of the content static append ?with_content=static or click here.";
+        Assert.assertEquals(actualText2, expectedText2);
+
+        WebElement clickHereLink = driver.findElement(By.xpath("//*[contains(text(),'click here')]"));
+        clickHereLink.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_content"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+        Assert.assertEquals(actualText1, expectedText1);
+        Assert.assertEquals(actualText2, expectedText2);
+
+        WebElement picture1 = driver.findElement(By.xpath("(//img[@src='/img/avatars/Original-Facebook-Geek-Profile-Avatar-6.jpg'])[1]"));
+        Assert.assertTrue(picture1.isDisplayed());
+
+        WebElement picture2 = driver.findElement(By.xpath("(//img[@src='/img/avatars/Original-Facebook-Geek-Profile-Avatar-6.jpg'])[1]"));
+        Assert.assertTrue(picture2.isDisplayed());
+
+        WebElement picture3 = driver.findElement(By.xpath("(//img[@src='/img/avatars/Original-Facebook-Geek-Profile-Avatar-6.jpg'])[1]"));
+        Assert.assertTrue(picture3.isDisplayed());
+
+        WebElement text1 = driver.findElement(By.xpath("(//div[@class='large-10 columns'])[1]"));
+        Assert.assertTrue(text1.isDisplayed());
+
+        WebElement text2 = driver.findElement(By.xpath("(//div[@class='large-10 columns'])[2]"));
+        Assert.assertTrue(text2.isDisplayed());
+
+        WebElement text3 = driver.findElement(By.xpath("(//div[@class='large-10 columns'])[3]"));
+        Assert.assertTrue(text3.isDisplayed());
+    }
+
+    @Test
+    public void testFloatingMenu() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement floatingMenuLink = driver.findElement(By.xpath("//*[contains(text(),'Floating Menu')]"));
+        floatingMenuLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/floating_menu"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        WebElement paragraph1 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[1]"));
+        Assert.assertTrue(paragraph1.isDisplayed());
+
+        WebElement paragraph2 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[2]"));
+        Assert.assertTrue(paragraph2.isDisplayed());
+
+        WebElement paragraph3 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[3]"));
+        Assert.assertTrue(paragraph3.isDisplayed());
+
+        WebElement paragraph4 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[4]"));
+        Assert.assertTrue(paragraph4.isDisplayed());
+
+        WebElement paragraph5 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[5]"));
+        Assert.assertTrue(paragraph5.isDisplayed());
+
+        WebElement paragraph6 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[6]"));
+        Assert.assertTrue(paragraph6.isDisplayed());
+
+        WebElement paragraph7 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[7]"));
+        Assert.assertTrue(paragraph7.isDisplayed());
+
+        WebElement paragraph8 = driver.findElement(By.xpath("(//div[@class='scroll large-10 columns large-centered']/p)[8]"));
+        Assert.assertTrue(paragraph8.isDisplayed());
+
+        WebElement homeButton = driver.findElement(By.xpath("//*[contains(text(),'Home')]"));
+        Assert.assertTrue(homeButton.isDisplayed());
+
+        WebElement newsButton = driver.findElement(By.xpath("//*[contains(text(),'News')]"));
+        Assert.assertTrue(newsButton.isDisplayed());
+
+        WebElement contactButton = driver.findElement(By.xpath("//*[contains(text(),'Contact')]"));
+        Assert.assertTrue(contactButton.isDisplayed());
+
+        WebElement aboutButton = driver.findElement(By.xpath("//*[contains(text(),'About')]"));
+        Assert.assertTrue(aboutButton.isDisplayed());
+
+        homeButton.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/floating_menu#home"));
+
+        newsButton.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/floating_menu#news"));
+
+        contactButton.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/floating_menu#contact"));
+
+        aboutButton.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/floating_menu#about"));
+
+        // scroll down the page by  1000 pixel vertical in order to check visibility of all buttons
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+
+        Assert.assertTrue(homeButton.isDisplayed());
+        Assert.assertTrue(newsButton.isDisplayed());
+        Assert.assertTrue(contactButton.isDisplayed());
+        Assert.assertTrue(aboutButton.isDisplayed());
+
+    }
+
+    @Test
+    public void testHoversMenuCheck() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement hoversLink = driver.findElement(By.xpath("//*[contains(text(),'Hovers')]"));
+        hoversLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/hovers"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        WebElement subtext = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(subtext.isDisplayed());
+
+        WebElement element1 = driver.findElement(By.xpath("(//div[@class='figure'])[1]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element1).perform();
+        String tooltipText1 = driver.findElement(By.xpath("(//div[@class='figcaption'])[1]")).getText();
+        Assert.assertEquals(tooltipText1, "name: user1\n" +
+                "View profile");
+
+        WebElement element2 = driver.findElement(By.xpath("(//div[@class='figure'])[2]"));
+        actions.moveToElement(element2).perform();
+        String tooltipText2 = driver.findElement(By.xpath("(//div[@class='figcaption'])[2]")).getText();
+        Assert.assertEquals(tooltipText2, "name: user2\n" +
+                "View profile");
+
+        WebElement element3 = driver.findElement(By.xpath("(//div[@class='figure'])[3]"));
+        actions.moveToElement(element3).perform();
+        String tooltipText3 = driver.findElement(By.xpath("(//div[@class='figcaption'])[3]")).getText();
+        Assert.assertEquals(tooltipText3, "name: user3\n" +
+                "View profile");
+    }
+
+    @Test
+    public void testHoversMenuFirstElementClick() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement hoversLink = driver.findElement(By.xpath("//*[contains(text(),'Hovers')]"));
+        hoversLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/hovers"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        WebElement element1 = driver.findElement(By.xpath("(//div[@class='figure'])[1]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element1).perform();
+        WebElement clickHereLink1 = driver.findElement(By.xpath("(//*[contains(text(),'View profile')])[1]"));
+        clickHereLink1.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/users/1"));
+        WebElement notFoundTitle = driver.findElement(By.tagName("h1"));
+        wait.until(ExpectedConditions.visibilityOf(notFoundTitle));
+
+    }
+
+    @Test
+    public void testHoversMenuSecondElementClick() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement hoversLink = driver.findElement(By.xpath("//*[contains(text(),'Hovers')]"));
+        hoversLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/hovers"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        WebElement element2 = driver.findElement(By.xpath("(//div[@class='figure'])[2]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element2).perform();
+        WebElement clickHereLink2 = driver.findElement(By.xpath("(//*[contains(text(),'View profile')])[2]"));
+        clickHereLink2.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/users/2"));
+        WebElement notFoundTitle = driver.findElement(By.tagName("h1"));
+        wait.until(ExpectedConditions.visibilityOf(notFoundTitle));
+
+    }
+
+    @Test
+    public void testHoversMenuThirdElementClick() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement hoversLink = driver.findElement(By.xpath("//*[contains(text(),'Hovers')]"));
+        hoversLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/hovers"));
+
+        WebElement dynamicContentTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicContentTitle));
+
+        WebElement element3 = driver.findElement(By.xpath("(//div[@class='figure'])[3]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element3).perform();
+        WebElement clickHereLink3 = driver.findElement(By.xpath("(//*[contains(text(),'View profile')])[3]"));
+        clickHereLink3.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/users/3"));
+        WebElement notFoundTitle = driver.findElement(By.tagName("h1"));
+        wait.until(ExpectedConditions.visibilityOf(notFoundTitle));
+    }
 }
