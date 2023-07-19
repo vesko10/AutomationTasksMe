@@ -547,4 +547,230 @@ public class Homework15 {
         WebElement notFoundTitle = driver.findElement(By.tagName("h1"));
         wait.until(ExpectedConditions.visibilityOf(notFoundTitle));
     }
+
+    @Test
+    public void testMultipleWindows() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement multipleWindowsLink = driver.findElement(By.xpath("//*[contains(text(),'Multiple Windows')]"));
+        multipleWindowsLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/windows"));
+
+        WebElement openingANewWindowTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(openingANewWindowTitle));
+
+        WebElement clickHereLink = driver.findElement(By.xpath("//*[contains(text(),'Click Here')]"));
+        clickHereLink.click();
+
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, "https://the-internet.herokuapp.com/windows");
+
+        List<String> windows = new ArrayList<>(driver.getWindowHandles());
+        String secondWindow = windows.get(1);
+        driver.switchTo().window(secondWindow);
+        driver.manage().window().maximize();
+        currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, "https://the-internet.herokuapp.com/windows/new");
+        WebElement headline = driver.findElement(By.tagName("h3"));
+        String actualHeadlineText = headline.getText();
+        Assert.assertEquals(actualHeadlineText, "New Window");
+    }
+
+    @Test
+    public void testRedirectLinkCheck() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement redirectLink = driver.findElement(By.xpath("//*[contains(text(),'Redirect Link')]"));
+        redirectLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/redirector"));
+
+        WebElement redirectionTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(redirectionTitle));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        wait.until(ExpectedConditions.visibilityOf(paragraphText));
+
+        WebElement hereLink = driver.findElement(By.id("redirect"));
+        Assert.assertTrue(hereLink.isDisplayed());
+
+        hereLink.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCodes = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodes));
+
+        WebElement paragraphText2 = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText2.isDisplayed());
+
+        WebElement statusCode200 = driver.findElement(By.xpath("(//li/a)[1]"));
+        Assert.assertTrue(statusCode200.isDisplayed());
+
+        WebElement statusCode301 = driver.findElement(By.xpath("(//li/a)[2]"));
+        Assert.assertTrue(statusCode301.isDisplayed());
+
+        WebElement statusCode404 = driver.findElement(By.xpath("(//li/a)[3]"));
+        Assert.assertTrue(statusCode404.isDisplayed());
+
+        WebElement statusCode500 = driver.findElement(By.xpath("(//li/a)[4]"));
+        Assert.assertTrue(statusCode500.isDisplayed());
+    }
+
+    @Test
+    public void testStatusCode200() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement redirectLink = driver.findElement(By.xpath("//*[contains(text(),'Redirect Link')]"));
+        redirectLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/redirector"));
+
+        WebElement redirectionTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(redirectionTitle));
+
+        WebElement hereLink = driver.findElement(By.id("redirect"));
+        Assert.assertTrue(hereLink.isDisplayed());
+
+        hereLink.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCode200 = driver.findElement(By.xpath("(//li/a)[1]"));
+        Assert.assertTrue(statusCode200.isDisplayed());
+
+        statusCode200.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes/200"));
+
+        WebElement statusCodes = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodes));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText.isDisplayed());
+
+        WebElement hereLinkCode200 = driver.findElement(By.xpath("//*[contains(text(),'here')]"));
+        hereLinkCode200.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCodesTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodesTitle));
+
+    }
+
+    @Test
+    public void testStatusCode301() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement redirectLink = driver.findElement(By.xpath("//*[contains(text(),'Redirect Link')]"));
+        redirectLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/redirector"));
+
+        WebElement redirectionTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(redirectionTitle));
+
+        WebElement hereLink = driver.findElement(By.id("redirect"));
+        Assert.assertTrue(hereLink.isDisplayed());
+
+        hereLink.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCode301 = driver.findElement(By.xpath("(//li/a)[2]"));
+        Assert.assertTrue(statusCode301.isDisplayed());
+
+        statusCode301.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes/301"));
+
+        WebElement statusCodes = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodes));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText.isDisplayed());
+
+        WebElement hereLinkCode301 = driver.findElement(By.xpath("//*[contains(text(),'here')]"));
+        hereLinkCode301.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCodesTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodesTitle));
+    }
+
+    @Test
+    public void testStatusCode404() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement redirectLink = driver.findElement(By.xpath("//*[contains(text(),'Redirect Link')]"));
+        redirectLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/redirector"));
+
+        WebElement redirectionTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(redirectionTitle));
+
+        WebElement hereLink = driver.findElement(By.id("redirect"));
+        Assert.assertTrue(hereLink.isDisplayed());
+
+        hereLink.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCode404 = driver.findElement(By.xpath("(//li/a)[3]"));
+        Assert.assertTrue(statusCode404.isDisplayed());
+
+        statusCode404.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes/404"));
+
+        WebElement statusCodes = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodes));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText.isDisplayed());
+
+        WebElement hereLinkCode404 = driver.findElement(By.xpath("//*[contains(text(),'here')]"));
+        hereLinkCode404.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCodesTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodesTitle));
+    }
+
+    @Test
+    public void testStatusCode500() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement redirectLink = driver.findElement(By.xpath("//*[contains(text(),'Redirect Link')]"));
+        redirectLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/redirector"));
+
+        WebElement redirectionTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(redirectionTitle));
+
+        WebElement hereLink = driver.findElement(By.id("redirect"));
+        Assert.assertTrue(hereLink.isDisplayed());
+
+        hereLink.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCode500 = driver.findElement(By.xpath("(//li/a)[4]"));
+        Assert.assertTrue(statusCode500.isDisplayed());
+
+        statusCode500.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes/500"));
+
+        WebElement statusCodes = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodes));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText.isDisplayed());
+
+        WebElement hereLinkCode500 = driver.findElement(By.xpath("//*[contains(text(),'here')]"));
+        hereLinkCode500.click();
+
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/status_codes"));
+
+        WebElement statusCodesTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(statusCodesTitle));
+    }
 }
