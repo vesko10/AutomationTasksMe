@@ -773,4 +773,146 @@ public class Homework15 {
         WebElement statusCodesTitle = driver.findElement(By.tagName("h3"));
         wait.until(ExpectedConditions.visibilityOf(statusCodesTitle));
     }
+
+    @Test
+    public void testDynamicControls() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement dynamicControlsLink = driver.findElement(By.xpath("//*[contains(text(),'Dynamic Controls')]"));
+        dynamicControlsLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_controls"));
+
+        WebElement dynamicControlsTitle = driver.findElement(By.tagName("h4"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicControlsTitle));
+
+        WebElement paragraphText = driver.findElement(By.xpath("//div[@class='example']/p"));
+        Assert.assertTrue(paragraphText.isDisplayed());
+
+        WebElement removeAddText = driver.findElement(By.xpath("//*[contains(text(),'Remove/add')]"));
+        Assert.assertTrue(removeAddText.isDisplayed());
+
+        WebElement enableDisable = driver.findElement(By.xpath("//*[contains(text(),'Enable/disable')]"));
+        Assert.assertTrue(enableDisable.isDisplayed());
+
+        WebElement aCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
+        Assert.assertTrue(aCheckBox.isDisplayed());
+        Assert.assertFalse(aCheckBox.isSelected());
+
+        WebElement disabledField = driver.findElement(By.xpath("//input[@type='text']"));
+        Assert.assertTrue(disabledField.isDisplayed());
+        Assert.assertFalse(disabledField.isEnabled());
+
+        WebElement removeButton = driver.findElement(By.xpath("//button[@onclick='swapCheckbox()']"));
+        Assert.assertTrue(removeButton.isDisplayed());
+
+        WebElement enabledButton = driver.findElement(By.xpath("//button[@onclick='swapInput()']"));
+        Assert.assertTrue(enabledButton.isDisplayed());
+
+        aCheckBox.click();
+        Assert.assertTrue(aCheckBox.isSelected());
+
+        //WebElement messageAfterEnabledButtonClick = driver.findElement(By.id("message"));
+        // Assert.assertTrue(messageAfterEnabledButtonClick.isDisplayed());
+        //wait.until(ExpectedConditions.visibilityOf(messageAfterEnabledButtonClick));
+        enabledButton.click();
+        String actualText1 = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(actualText1, "It's enabled!");
+
+        enabledButton.click();
+        String actualText2 = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(actualText2, "It's disabled!");
+
+//        enabledButton.click();
+//        WebElement messageAfterDisableButtonClick = driver.findElement(By.id("message"));
+//        Assert.assertTrue(messageAfterDisableButtonClick.isDisplayed());
+//        wait.until(ExpectedConditions.visibilityOf(messageAfterDisableButtonClick));
+
+        removeButton.click();
+        String actualText3 = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(actualText3, "It's gone!");
+
+        removeButton.click();
+        String actualText4 = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(actualText4, "It's back!");
+        WebElement aCheckBoxAfterAdding = driver.findElement(By.id("checkbox"));
+        Assert.assertTrue(aCheckBoxAfterAdding.isDisplayed());
+        Assert.assertFalse(aCheckBoxAfterAdding.isSelected());
+    }
+
+    @Test
+    public void testDynamicLoading() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement dynamicLoadingLink = driver.findElement(By.xpath("//*[contains(text(),'Dynamic Loading')]"));
+        dynamicLoadingLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_loading"));
+
+        WebElement dynamicLoadedTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicLoadedTitle));
+
+        WebElement paragraphText1 = driver.findElement(By.xpath("(//div[@class='example']/p)[1]"));
+        Assert.assertTrue(paragraphText1.isDisplayed());
+
+        WebElement paragraphText2 = driver.findElement(By.xpath("(//div[@class='example']/p)[2]"));
+        Assert.assertTrue(paragraphText2.isDisplayed());
+
+        WebElement exampleLink1 = driver.findElement(By.xpath("//*[contains(text(),'Example 1: Element on page that is hidden')]"));
+        Assert.assertTrue(exampleLink1.isDisplayed());
+
+        WebElement exampleLink2 = driver.findElement(By.xpath("//*[contains(text(),'Example 2: Element rendered after the fact')]"));
+        Assert.assertTrue(exampleLink2.isDisplayed());
+
+        exampleLink1.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_loading/1"));
+        WebElement dynamicallyLoadedPageElementsTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicallyLoadedPageElementsTitle));
+        WebElement example1Title1 = driver.findElement(By.tagName("h4"));
+        wait.until(ExpectedConditions.visibilityOf(example1Title1));
+
+        WebElement startButton = driver.findElement(By.xpath("//*[contains(text(),'Start')]"));
+        startButton.click();
+        WebElement textAfterButtonClick = driver.findElement(By.xpath("//*[contains(text(),'Hello World!')]"));
+        wait.until(ExpectedConditions.visibilityOf(textAfterButtonClick));
+        Assert.assertTrue(textAfterButtonClick.isDisplayed());
+
+    }
+
+    @Test
+    public void testDynamicLoadingWithExample2() {
+        driver.get("https://the-internet.herokuapp.com/");
+        WebElement dynamicLoadingLink = driver.findElement(By.xpath("//*[contains(text(),'Dynamic Loading')]"));
+        dynamicLoadingLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_loading"));
+
+        WebElement dynamicLoadedTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicLoadedTitle));
+
+        WebElement paragraphText1 = driver.findElement(By.xpath("(//div[@class='example']/p)[1]"));
+        Assert.assertTrue(paragraphText1.isDisplayed());
+
+        WebElement paragraphText2 = driver.findElement(By.xpath("(//div[@class='example']/p)[2]"));
+        Assert.assertTrue(paragraphText2.isDisplayed());
+
+        WebElement exampleLink1 = driver.findElement(By.xpath("//*[contains(text(),'Example 1: Element on page that is hidden')]"));
+        Assert.assertTrue(exampleLink1.isDisplayed());
+
+        WebElement exampleLink2 = driver.findElement(By.xpath("//*[contains(text(),'Example 2: Element rendered after the fact')]"));
+        Assert.assertTrue(exampleLink2.isDisplayed());
+        exampleLink2.click();
+        wait.until(ExpectedConditions.urlToBe("https://the-internet.herokuapp.com/dynamic_loading/2"));
+        WebElement dynamicallyLoadedPageElementsTitle = driver.findElement(By.tagName("h3"));
+        wait.until(ExpectedConditions.visibilityOf(dynamicallyLoadedPageElementsTitle));
+        WebElement example1Title2 = driver.findElement(By.tagName("h4"));
+        wait.until(ExpectedConditions.visibilityOf(example1Title2));
+
+        WebElement startButton = driver.findElement(By.xpath("//*[contains(text(),'Start')]"));
+        startButton.click();
+        WebElement textAfterButtonClick = driver.findElement(By.id("finish"));
+        wait.until(ExpectedConditions.visibilityOf(textAfterButtonClick));
+        Assert.assertTrue(textAfterButtonClick.isDisplayed());
+    }
 }
