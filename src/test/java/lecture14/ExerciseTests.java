@@ -81,6 +81,12 @@ public class ExerciseTests {
         };
     }
 
+    @DataProvider(name = "getUsers2")
+    public Object[][] getUsers2() {
+        return new Object[][]{{"test123489@gmail.com", "Abc123", "vesko201"}, //login with email
+        };
+    }
+
     // demo invocationCount = 10
     @Test(dataProvider = "getUsers")
     public void testLoginWithWaits(String user, String password, String name) {
@@ -178,7 +184,7 @@ public class ExerciseTests {
         dateElement.sendKeys("10022000");
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='defaultRegisterFormPassword']"));
-        passwordField.sendKeys("Aa123456");
+        passwordField.sendKeys("Bbc123456");
 
         WebElement passwordConfirmationField = driver.findElement(By.xpath("//input[@id='defaultRegisterPhonePassword']"));
         passwordConfirmationField.sendKeys("Aa123456");
@@ -247,25 +253,23 @@ public class ExerciseTests {
     //    public static String generateEmail() {
 //        return UUID.randomUUID().toString() + "@gmail.com";
 //    }
-    @Test
-    public void testEditProfile() {
+    @Test(dataProvider = "getUsers2")
+    public void testEditProfile(String email, String password, String username) {
         driver.get("http://training.skillo-bg.com:4300/posts/all");
         WebElement loginLink = driver.findElement(By.id("nav-link-login"));
         loginLink.click();
 
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4300/users/login"));
-
 
         WebElement signInElement = driver.findElement(By.xpath("//*[text()='Sign in']"));
         wait.until(ExpectedConditions.visibilityOf(signInElement));
 
         WebElement userNameField = driver.findElement(By.id("defaultLoginFormUsername"));
-        userNameField.sendKeys("testMail1@gmail.com");
+        userNameField.sendKeys(email);
 
         WebElement passwordField = driver.findElement(By.id("defaultLoginFormPassword"));
-        passwordField.sendKeys("Dimitar1.Tarkalanov1");
+        passwordField.sendKeys(password);
 
         WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("sign-in-button")));
         signInButton.click();
@@ -275,25 +279,61 @@ public class ExerciseTests {
 
         wait.until(ExpectedConditions.urlContains("http://training.skillo-bg.com:4300/users/"));
 
+        Boolean isTextDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h2"), username));
+        Assert.assertTrue(isTextDisplayed, "The username is not displayed!");
+
         WebElement editProfileButton = driver.findElement(By.xpath("//i[@class='fas fa-user-edit ng-star-inserted'][last()]"));
         editProfileButton.click();
 
-        WebElement modal = driver.findElement(By.cssSelector("modal-dialog"));
+//        WebElement modal = driver.findElement(By.cssSelector("modal-dialog"));
 
 //        modal.findElement()
-        Boolean isModifyTextLabelDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h2"),"Modify Your Profile"));
-        Assert.assertTrue(isModifyTextLabelDisplayed, "The username is not displayed!");
+        Boolean isModifyTextLabelDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h4"),"Modify Your Profile"));
+        Assert.assertTrue(isModifyTextLabelDisplayed, "The modify profile form is not displayed!");
 
-        WebElement modifyUserName = driver.findElement(By.xpath("//input[@formcontrolname='username']"));
-        modifyUserName.clear();
-        modifyUserName.sendKeys("DimitarTarkalanov");
+        String newModifiedUserName = "vesko15";
+        WebElement modifyUserNameField = driver.findElement(By.xpath("//input[@formcontrolname='username']"));
+        modifyUserNameField.clear();
+        modifyUserNameField.sendKeys(newModifiedUserName);
+
+        String newModifiedUserEmail = "test1234898@gmail.com";
+        WebElement modifyEmailField = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
+        modifyEmailField.clear();
+        modifyEmailField.sendKeys(newModifiedUserEmail);
+
+        String newModifiedPassword = "Abc123456";
+        WebElement modifyPasswordField = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
+        modifyPasswordField.sendKeys(newModifiedPassword);
+
+        String confirmPassword = "Abc123456";
+        WebElement confirmPasswordField = driver.findElement(By.xpath("//input[@formcontrolname='confirmPassword']"));
+        confirmPasswordField.sendKeys(confirmPassword);
+
+        WebElement publicInfoEditField = driver.findElement(By.xpath("//textarea[@formcontrolname='publicInfo']"));
+        publicInfoEditField.clear();
+        publicInfoEditField.sendKeys("New modified Public Info");
 
         WebElement saveButton = driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
         saveButton.click();
 
-        WebElement userNameLabelInProfile = driver.findElement(By.tagName("h2"));
-        Assert.assertTrue(userNameLabelInProfile.isDisplayed());
+        Boolean isModifiedProfileUserNameDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h2"),"vesko15"));
+        Assert.assertTrue(isModifiedProfileUserNameDisplayed,"Username was not modfied");
 
+        WebElement logoutButton = driver.findElement(By.className("fas fa-sign-out-alt fa-lg"));
+        logoutButton.click();
 
+        wait.until(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4300/users/login"));
+        wait.until(ExpectedConditions.visibilityOf(signInElement));
+
+        userNameField.sendKeys(newModifiedUserEmail);
+        passwordField.sendKeys(newModifiedPassword);
+
+        signInButton.click();
+        profileLink.click();
+
+        wait.until(ExpectedConditions.urlContains("http://training.skillo-bg.com:4300/users/"));
+
+        Boolean isModifiedNewTextDisplayed = wait.until(ExpectedConditions.textToBe(By.tagName("h2"),newModifiedUserName));
+        Assert.assertTrue(isModifiedNewTextDisplayed,"Username was not modfied");
     }
 }
