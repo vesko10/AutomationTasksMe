@@ -15,17 +15,27 @@ public class ProfilePage {
     private final WebDriver driver;
     @FindBy(tagName = "h2")
     private WebElement username;
+    @FindBy(xpath = "//i[@class='fas fa-user-edit ng-star-inserted'][last()]")
+    private WebElement editProfileButton;
+    @FindBy(tagName = "h2")
+    private WebElement modifiedUsername;
 
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-
     public boolean isUrlLoaded(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         return wait.until(ExpectedConditions.urlContains(PAGE_URL));
     }
     public String getUsername(){
         return username.getText();
+    }
+
+    public void clickEditProfileButton(){
+        editProfileButton.click();
+    }
+    public String getUModifiedsername(){
+        return modifiedUsername.getText();
     }
 }
