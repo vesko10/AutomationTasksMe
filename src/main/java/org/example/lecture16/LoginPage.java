@@ -22,7 +22,7 @@ public class LoginPage {
     }
 
     public String getSingInElementText(){
-        WebElement signInFormTitle = driver.findElement(By.className("h4"));
+        WebElement signInFormTitle = driver.findElement(By.xpath("//*[text()='Sign in']"));
         wait.until(ExpectedConditions.visibilityOf(signInFormTitle));
         return signInFormTitle.getText();
 

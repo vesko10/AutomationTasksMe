@@ -24,4 +24,14 @@ public class ProfilePage {
         WebElement username = driver.findElement(By.tagName("h2"));
         return username.getText();
     }
+
+    public void clickEditProfileButton(){
+        WebElement editProfileButton = driver.findElement(By.xpath("//i[@class='fas fa-user-edit ng-star-inserted'][last()]"));
+        editProfileButton.click();
+    }
+
+    public String getUModifiedsername(){
+        WebElement modifiedUsername = driver.findElement(By.tagName("h2"));
+        return modifiedUsername.getText();
+    }
 }
