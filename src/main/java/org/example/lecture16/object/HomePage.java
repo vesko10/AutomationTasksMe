@@ -1,4 +1,4 @@
-package org.example.lecture16;
+package org.example.lecture16.object;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
