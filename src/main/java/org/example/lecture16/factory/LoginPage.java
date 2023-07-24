@@ -21,6 +21,8 @@ public class LoginPage {
     private WebElement passwordField;
     @FindBy(id = "sign-in-button")
     private WebElement signInButton;
+    @FindBy(linkText = "Register")
+    private WebElement registerLink;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -46,5 +48,8 @@ public class LoginPage {
     }
     public void clickSignIn(){
         signInButton.click();
+    }
+    public void clickRegisterLink(){
+        registerLink.click();
     }
 }

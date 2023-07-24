@@ -41,4 +41,9 @@ public class LoginPage {
         WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("sign-in-button")));
         signInButton.click();
     }
+
+    public void clickRegisterLink(){
+        WebElement registerLink = driver.findElement(By.linkText("Register"));
+        registerLink.click();
+    }
 }

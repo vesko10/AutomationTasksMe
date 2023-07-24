@@ -184,10 +184,10 @@ public class ExerciseTests {
         dateElement.sendKeys("10022000");
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='defaultRegisterFormPassword']"));
-        passwordField.sendKeys("Bbc123456");
+        passwordField.sendKeys("Bbd123456");
 
         WebElement passwordConfirmationField = driver.findElement(By.xpath("//input[@id='defaultRegisterPhonePassword']"));
-        passwordConfirmationField.sendKeys("Aa123456");
+        passwordConfirmationField.sendKeys("Bbd123456");
 
         WebElement publicInfoField = driver.findElement(By.xpath("//textarea[@placeholder='Public info']"));
         publicInfoField.sendKeys("Test");
