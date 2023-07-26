@@ -2,6 +2,7 @@ package lecture14;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.jshell.execution.Util;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,7 +81,7 @@ public class ExerciseTests {
         };
     }
 
-    // demo invocationCount = 10
+//    demo invocationCount = 10
     @Test(dataProvider = "getUsers")
     public void testLoginWithWaits(String user, String password, String name) {
         driver.get("http://training.skillo-bg.com:4300/posts/all");
@@ -146,7 +147,7 @@ public class ExerciseTests {
     }
 
     @Test
-    public void testRegistration(){
+    public void testRegistration() {
         driver.get("http://training.skillo-bg.com:4300/posts/all");
         WebElement loginLink = driver.findElement(By.id("nav-link-login"));
         loginLink.click();
@@ -165,19 +166,19 @@ public class ExerciseTests {
         WebElement signUpLabel = driver.findElement(By.xpath("//*[text()='Sign up']"));
         wait.until(ExpectedConditions.visibilityOf(signUpLabel));
 
-        WebElement usernameElement = driver.findElement(By.name("username"));
-        usernameElement.sendKeys("testttttTesttt");
+        WebElement userNameField = driver.findElement(By.name("username"));
+        String username = generateRandomAlphabeticString(5, 8);
+        userNameField.sendKeys(username);
 
-//        String email = generateEmail();
-        WebElement emailElement = driver.findElement(By.cssSelector("input[type='email']"));
-        emailElement.sendKeys("testtj1211@gmail.com");
-        //emailElement.sendKeys(email);
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        String email = generateRandomEmail(5, 10);
+        emailField.sendKeys(email);
 
         WebElement dateElement = driver.findElement(By.xpath("//input[@formcontrolname='birthDate']"));
         dateElement.sendKeys("10022000");
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='defaultRegisterFormPassword']"));
-        passwordField.sendKeys("Aa123456");
+        passwordField.sendKeys("Bbc123456");
 
         WebElement passwordConfirmationField = driver.findElement(By.xpath("//input[@id='defaultRegisterPhonePassword']"));
         passwordConfirmationField.sendKeys("Aa123456");
@@ -196,6 +197,14 @@ public class ExerciseTests {
         WebElement userNameLabelInProfile = driver.findElement(By.tagName("h2"));
         Assert.assertTrue(userNameLabelInProfile.isDisplayed());
 
+    }
+
+    private String generateRandomEmail(int minLengthInclusive, int maxLengthInclusive) {
+        return generateRandomAlphabeticString(minLengthInclusive, maxLengthInclusive) + "@gmail.com";
+    }
+
+    private String generateRandomAlphabeticString(int minLengthInclusive, int maxLengthInclusive) {
+        return RandomStringUtils.randomAlphanumeric(minLengthInclusive, maxLengthInclusive);
     }
 
 //    public String randomIdentifier() {
