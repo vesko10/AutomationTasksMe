@@ -1,0 +1,105 @@
+Xpath:
+
+iSkillo logo:
+//a[@class='navbar-brand']//img
+//*[@id='homeIcon']
+
+Home button:
+//a[@id='nav-link-home']
+//a[contains(@href, '/posts/all')]
+Login button:
+//*[@id="nav-link-login"]
+
+Sign In label:
+//p[@class='h4 mb-4']
+(//*[contains(text(),'Sign in')])[1]
+//*[@class='h4 mb-4']
+//p[contains(text(),'Sign in')]
+/html/body/app-root/div[2]/app-login/div/div/form/p[1]
+
+Username field:
+//input[@id='defaultLoginFormUsername']
+//input[@formcontrolname='usernameOrEmail']
+//input[@name='usernameOrEmail']
+//*[@id="defaultLoginFormUsername"]
+//*[@name="usernameOrEmail"]
+//*[@formcontrolname="usernameOrEmail"]
+
+Password field:
+//input[@id='defaultLoginFormPassword']
+//input[@formcontrolname='password']
+//input[@name='password']
+//*[@id="defaultLoginFormPassword"]
+//*[@name="password"]
+//*[@formcontrolname="password"]
+//*[@type="password"]
+
+Remember me check box:
+//input[@class='remember-me-button ng-untouched ng-pristine ng-valid']
+//input[@formcontrolname='rememberMe']
+/html/body/app-root/div[2]/app-login/div/div/form/div/input
+
+Remenber me label:
+//span[contains(text(), 'Remember me')]
+/html/body/app-root/div[2]/app-login/div/div/form/div/span
+
+Submit button/ Sing in button:
+//button[@class='my-4 btn btn-primary']
+//button[@id='sign-in-button']
+//button[@type='submit']
+//*[@id="sign-in-button"]
+//*[@class="my-4 btn btn-primary"]
+//*[@type="submit"]
+//button[contains(text(), 'Sign in')]
+
+Not a member?
+//*[contains(text(),'Not a member?')]
+//span[@class='color-black']
+//*[@class='color-black'] - this one not that reliable since
+/html/body/app-root/div[2]/app-login/div/div/form/p[2]/span
+//span[contains(text(), 'Not a member?')]
+
+Register button:
+//*[contains(text(),'Register')]
+//a[contains(@href, '/users/register')]
+//*[@href='/users/register']
+/html/body/app-root/div[2]/app-login/div/div/form/p[2]/a
+//a[@href="/users/register"]
+//a[contains(text(), 'Register')]
+
+Wrong log in input:
+//*[@id="toast-container"]
+
+CSS
+
+Login button:
+#nav-link-login
+[id*=nav-link-login]
+
+Sign in text:
+.h4.mb-4
+
+Username field:
+#defaultLoginFormUsername
+[id*=defaultLoginFormUsername]
+
+Password field:
+#defaultLoginFormPassword
+[id*=defaultLoginFormPassword]
+[type="password"]
+
+Remember me check box:
+input[formcontrolname="rememberMe"]
+input.remember-me-button.ng-untouched.ng-pristine.ng-valid
+input[type=checkbox]
+
+Submit button/ Sing in button:
+#sign-in-button
+[id*=sign-in-button]
+
+iSkillo logo
+#homeIcon
+
+Home button
+#nav-link-home
+[id*=nav-link-home]
