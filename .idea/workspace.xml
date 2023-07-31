@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5313a6bd-2e72-46e6-a7cc-d50a258a2494" name="Changes" comment="Homeworks added in one repo" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="exercise15" />
+                <branch-info repo="$PROJECT_DIR$" source="homework15" />
+                <branch-info repo="$PROJECT_DIR$" source="registerTest" />
+                <branch-info repo="$PROJECT_DIR$" source="homework14" />
+                <branch-info repo="$PROJECT_DIR$" source="homework16" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="homework16" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d6f5f251-b5b2-401c-8bf2-b08b96aaf367" />
+        <option name="url" value="https://github.com/vesko10/AutomationTasksMe.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/test/java/lecture13/ExerciseTests.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/java/lecture14/ExerciseTests.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="2ScWi11VtZr2ETwW2peJeMqcsvA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/java/AutomationTasksMe/src/main/java/org/example",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Properties"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\java\AutomationTasksMe\src\main\java\org\example" />
+      <recent name="C:\java\AutomationTasksMe\src\main\java\org\example\classes" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.lecture02" />
+      <recent name="org.example.lecture16.factory" />
+      <recent name="lecture14" />
+      <recent name="lecture13" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AutomationTasksMe" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AutomationTasksMe" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EditProfileTest.testEditProfile" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sk06_automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lecture16.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lecture16" />
+      <option name="MAIN_CLASS_NAME" value="lecture16.EditProfileTest" />
+      <option name="METHOD_NAME" value="testEditProfile" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExerciseTests.testEditProfile" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sk06_automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lecture14.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lecture14" />
+      <option name="MAIN_CLASS_NAME" value="lecture14.ExerciseTests" />
+      <option name="METHOD_NAME" value="testEditProfile" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExerciseTests.testLoginWithWaits" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sk06_automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lecture14.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lecture14" />
+      <option name="MAIN_CLASS_NAME" value="lecture14.ExerciseTests" />
+      <option name="METHOD_NAME" value="testLoginWithWaits" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Homework15.testDynamicLoading" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sk06_automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lecture15.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lecture15" />
+      <option name="MAIN_CLASS_NAME" value="lecture15.Homework15" />
+      <option name="METHOD_NAME" value="testDynamicLoading" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Homework15.testDynamicLoadingWithExample2" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="sk06_automation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lecture15.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lecture15" />
+      <option name="MAIN_CLASS_NAME" value="lecture15.Homework15" />
+      <option name="METHOD_NAME" value="testDynamicLoadingWithExample2" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.ExerciseTests.testLoginWithWaits" />
+        <item itemvalue="TestNG.Homework15.testDynamicLoadingWithExample2" />
+        <item itemvalue="TestNG.Homework15.testDynamicLoading" />
+        <item itemvalue="TestNG.ExerciseTests.testEditProfile" />
+        <item itemvalue="TestNG.EditProfileTest.testEditProfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5313a6bd-2e72-46e6-a7cc-d50a258a2494" name="Changes" comment="" />
+      <created>1689446473215</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689446473215</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Homework14">
+      <created>1689446736115</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689446736115</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Homework14">
+      <created>1689446813304</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689446813304</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Homework14 latest">
+      <created>1689451141121</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689451141121</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Homework15 latest">
+      <created>1689763682616</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689763682617</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Homework15 latest updates">
+      <created>1689772514971</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689772514971</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Homework15 latest updates from task">
+      <created>1689786819592</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689786819593</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Homework15 latest updates from task 13/15">
+      <created>1689801279441</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1689801279442</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Lecture 14 modifications">
+      <created>1689882504123</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689882504123</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Lecture 16 modifications">
+      <created>1689934204680</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1689934204680</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Lecture 16 object model">
+      <created>1689950028611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1689950028611</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Lecture 16 object model">
+      <created>1689950125646</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1689950125646</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Lecture 16 object model + factory model task">
+      <created>1689963004231</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1689963004231</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Registration test added with object model and factory model">
+      <created>1690218791919</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1690218791919</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Registration test added with object model and factory model">
+      <created>1690225478478</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1690225478478</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Registration test added">
+      <created>1690406186310</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690406186310</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Homeworks added in one repo">
+      <created>1690828458579</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1690828458579</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Homework14" />
+    <MESSAGE value="Homework14 latest" />
+    <MESSAGE value="Homework15 latest" />
+    <MESSAGE value="Homework15 latest updates" />
+    <MESSAGE value="Homework15 latest updates from task" />
+    <MESSAGE value="Homework15 latest updates from task 13/15" />
+    <MESSAGE value="Lecture 14 modifications" />
+    <MESSAGE value="Lecture 16 modifications" />
+    <MESSAGE value="Lecture 16 object model" />
+    <MESSAGE value="Lecture 16 object model + factory model task" />
+    <MESSAGE value="Registration test added with object model and factory model" />
+    <MESSAGE value="Registration test added" />
+    <MESSAGE value="Homeworks added in one repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homeworks added in one repo" />
+  </component>
+</project>
