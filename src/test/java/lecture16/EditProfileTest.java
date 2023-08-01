@@ -1,7 +1,11 @@
 package lecture16;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.lecture16.factory.*;
+import org.example.lecture16.factory.Header;
+import org.example.lecture16.factory.HomePage;
+import org.example.lecture16.factory.LoginPage;
+import org.example.lecture16.factory.ProfilePage;
+import org.example.lecture16.factory.ModifyProfileForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
