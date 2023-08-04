@@ -12,6 +12,10 @@ public class Italian extends Person {
         System.out.println("Ciao!");
     }
 
+    public void danceTarantella(){
+        System.out.println("We are dancing Tarantella!");
+    }
+
     public void makePizza(List<String> ingredients) {
         System.out.println("I am making a pizza with the following ingredients: " + ingredients);
     }
