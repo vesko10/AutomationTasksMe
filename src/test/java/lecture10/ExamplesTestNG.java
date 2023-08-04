@@ -1,4 +1,4 @@
-package org.example.lecture10;
+package lecture10;
 
 import org.junit.AfterClass;
 import org.testng.Assert;
